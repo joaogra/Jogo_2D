@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Tabuleiro {
     private int [][] tabuleiro = new int[10][10];
@@ -50,8 +51,82 @@ public class Tabuleiro {
         System.out.println();
     }
 
-    public  void setPos(Personagem p, String direcao){
-        tabuleiro[p.getPos()[0]] [ p.getPos()[1]] = 99;
+    public void setPos(Personagem p, String direcao,int indicePersonagem){
+        do {
+            switch (direcao) {
+                case "C":
+                    if (p.getPos()[0] != 0) {//Verifica se esta na linha 0
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = 0;
+                        tabuleiro[p.getPos()[0] - 1][p.getPos()[1]] = indicePersonagem;//anda para cima
+                        p.setPos(p.getPos()[0] - 1, p.getPos()[1]);//att a posicao do personagem
+                        return;
+                    }
+                    System.out.println("Posição Invalida!");
+                    direcao = insereMovimento();//Usuario insere denovo
+                    break;//repete o loop
+
+                case "B":
+                    if (p.getPos()[0] != 9) {//Verifica se esta na 9
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = 0;
+                        tabuleiro[p.getPos()[0] + 1][p.getPos()[1]] = indicePersonagem;//anda para baixo
+                        p.setPos(p.getPos()[0] + 1, p.getPos()[1]);
+                        return;
+                    }
+                    System.out.println("Posição Invalida!");
+                    direcao = insereMovimento();
+                    break;
+
+                case "D":
+                    if (p.getPos()[1] != 9) {//Verifica se esta na coluna 9
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = 0;
+                        tabuleiro[p.getPos()[0]][p.getPos()[1] + 1] = indicePersonagem;//anda para a direita
+                        p.setPos(p.getPos()[0], p.getPos()[1] + 1);
+                        return;
+                    }
+                    System.out.println("Posição Invalida!");
+                    direcao = insereMovimento();
+                    break;
+
+                case "E":
+                    if (p.getPos()[1] != 0) {//Verifica se esta na coluna 0
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = 0;
+                        tabuleiro[p.getPos()[0]][p.getPos()[1] - 1] = indicePersonagem;//Anda para a esquerda
+                        p.setPos(p.getPos()[0], p.getPos()[1] - 1);
+                        return;
+                    }
+                    System.out.println("Posição Invalida!");
+                    direcao = insereMovimento();
+                    break;
+
+                default://caso receba uma String invalida
+                    System.out.println("Opção Invalida!");
+                    direcao = insereMovimento();
+                    break;
+            }
+        }while(true);//repete o switch se der Posicao invalida
+    }
+
+    private String insereMovimento(){
+        Scanner teclado = new Scanner(System.in);
+        do {
+            System.out.println("Digite 'C' para andar para cima");
+            System.out.println("Digite 'B' para andar para baixo");
+            System.out.println("Digite 'E' para andar para esquerda");
+            System.out.println("Digite 'D' para andar para direita");
+            switch(teclado.nextLine().toUpperCase()){
+                case "C":
+                    return "C";
+                case "B":
+                    return "B";
+                case "E":
+                    return "E";
+                case "D":
+                    return "D";
+                default:
+                    System.out.println("Jogador Invalida!");
+                    break;
+            }
+        }while(true);
     }
 }
 

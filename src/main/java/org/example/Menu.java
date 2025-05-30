@@ -26,7 +26,7 @@ public class Menu {
         return 0;
     }
 
-     public Personagem seletordePersonagem (){
+     public Personagem seletordePersonagem (int indice){
         System.out.println("Escolha seu personagem: ");
         System.out.println("1 - Arqueiro / 2 - Guerreiro / 3 - Mago");
         Scanner teclado = new Scanner(System.in);
@@ -35,11 +35,11 @@ public class Menu {
             String resp = teclado.nextLine();
             switch (resp) {
                 case "1":
-                    return new Personagem("Arqueiro", 8, 5, 5 );
+                    return new Personagem("Arqueiro", 8, 5, 5 , indice);
                 case "2":
-                    return new Personagem("Guerreiro", 15, 10, 1);
+                    return new Personagem("Guerreiro", 15, 10, 1, indice);
                 case "3":
-                    return new Personagem("Mago", 10, 7, 3);
+                    return new Personagem("Mago", 10, 7, 3, indice);
                 default: teste = true;
                     System.out.println("Opção inválida! Tente novamente.");
             }

@@ -6,17 +6,19 @@ import java.util.Scanner;
 public class Personagem {
     private String nome;
     private int forcaAtaque, forcaDefesa, alcance, pontoVida;
+    private final int indicaPlayer;//indica se é o player 1 ou o player 2
     private int[] posAtual = new int[2];
 
-    public Personagem(String nome, int forcaAtaque, int forcaDefesa, int alcance) {
-        this.nome = nome;
-        System.out.println("Digite o nome do seu personagem: ");
+    public Personagem(String nome, int forcaAtaque, int forcaDefesa, int alcance, int indicaPlayer) {
         Scanner teclado = new Scanner(System.in);
+        System.out.println("Digite o nome do personagem: ");
         defineNome(teclado.nextLine());
+
         pontoVida = 100;
         this.forcaAtaque = forcaAtaque;
         this.forcaDefesa = forcaDefesa;
         this.alcance = alcance;
+        this.indicaPlayer = indicaPlayer;//Indica se é o player 1 ou player 2
     }
 
     public int getPontoVida() {
@@ -37,6 +39,10 @@ public class Personagem {
 
     public int getAlcance() {
         return alcance;
+    }
+
+    public int getIndicaPlayer() {
+        return indicaPlayer;
     }
 
     public void setAlcance(int alcance) {

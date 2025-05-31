@@ -3,13 +3,15 @@ package org.example;
 import java.lang.reflect.Array;
 import java.util.Scanner;
 
-public class Personagem {
+public class
+Personagem {
     private String nome;
     private int forcaAtaque, forcaDefesa, alcance, pontoVida;
+    private final int tipoPersonagem;
     private final int indicaPlayer;//indica se é o player 1 ou o player 2
     private int[] posAtual = new int[2];
 
-    public Personagem(String nome, int forcaAtaque, int forcaDefesa, int alcance, int indicaPlayer) {
+    public Personagem(String nome, int forcaAtaque, int forcaDefesa, int alcance, int indicaPlayer, int tipoPersonagem) {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Digite o nome do personagem: ");
         defineNome(teclado.nextLine());
@@ -19,6 +21,7 @@ public class Personagem {
         this.forcaDefesa = forcaDefesa;
         this.alcance = alcance;
         this.indicaPlayer = indicaPlayer;//Indica se é o player 1 ou player 2
+        this.tipoPersonagem=tipoPersonagem;
     }
 
     public int getPontoVida() {
@@ -40,6 +43,8 @@ public class Personagem {
     public int getAlcance() {
         return alcance;
     }
+
+    public  int getTipoPersonagem(){ return tipoPersonagem; }
 
     public int getIndicaPlayer() {
         return indicaPlayer;

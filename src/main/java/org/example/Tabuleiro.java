@@ -62,7 +62,7 @@ public class Tabuleiro {
                         return;
                     }
                     System.out.println("Posição Invalida!");
-                    direcao = insereMovimento();//Usuario insere denovo
+                    direcao = insereMovimento(p);//Usuario insere denovo
                     break;//repete o loop
 
                 case "B":
@@ -73,7 +73,7 @@ public class Tabuleiro {
                         return;
                     }
                     System.out.println("Posição Invalida!");
-                    direcao = insereMovimento();
+                    direcao = insereMovimento(p);
                     break;
 
                 case "D":
@@ -84,7 +84,7 @@ public class Tabuleiro {
                         return;
                     }
                     System.out.println("Posição Invalida!");
-                    direcao = insereMovimento();
+                    direcao = insereMovimento(p);
                     break;
 
                 case "E":
@@ -95,18 +95,19 @@ public class Tabuleiro {
                         return;
                     }
                     System.out.println("Posição Invalida!");
-                    direcao = insereMovimento();
+                    direcao = insereMovimento(p);
                     break;
 
                 default://caso receba uma String invalida
                     System.out.println("Opção Invalida!");
-                    direcao = insereMovimento();
+                    direcao = insereMovimento(p);
                     break;
             }
         }while(true);//repete o switch se der Posicao invalida
     }
 
-    private String insereMovimento(){
+    public String insereMovimento(Personagem personagemAtual){
+        System.out.println("Vez de " +personagemAtual.getNome() +":");
         Scanner teclado = new Scanner(System.in);
         do {
             System.out.println("Digite 'C' para andar para cima");

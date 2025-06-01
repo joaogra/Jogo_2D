@@ -23,7 +23,21 @@ public class Acao {
             atual.setForcaDefesa(7);
     }
 
-    public  void ultimate(Personagem atual){
+    public  void ultimate(Personagem atual, Personagem oponente){
+        if(atual.getTipoPersonagem()==1){
+            atual.setAlcance(atual.getAlcance()+1);
+        }
+
+        if(atual.getTipoPersonagem()==2){
+            atual.setForcaAtaque(atual.getForcaAtaque()*2);
+        }
+
+        if(atual.getTipoPersonagem()==3){
+         int aux=0;
+         aux = atual.getPontoVida();
+         atual.setPontoVida(oponente.getPontoVida());
+         oponente.setPontoVida(aux);
+        }
 
     }
 }

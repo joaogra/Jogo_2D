@@ -63,7 +63,7 @@ public class Jogo {
                     acao.movimentacao(tabuleiro1, p1);
                     break;
                 case "2":
-                    acao.atacar(p1, p2);
+                    acao.atacar(p1, p2, tabuleiro1);
                     break;
                 case "3":
                     acao.defender(p1);

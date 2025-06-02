@@ -10,14 +10,16 @@ public class Acao {
         tabuleiroAtual.imprimeTabuleiro();
     }
 
-    public void atacar(Personagem atacante, Personagem defensor){
+    public void atacar(Personagem atacante, Personagem defensor, Tabuleiro tabuleiro){
         if(verificaDistancia(atacante, defensor)) {
             defensor.setPontoVida(dano(atacante, defensor));
             defensor.setForcaDefesa(atacante.getForcaAtaque());//att a defesa do defensor
+            tabuleiro.imprimeTabuleiro();
         }
         else{
             System.out.println("O " + defensor.getNome() + " NÃO ESTÁ NO ALCANCE!");
             System.out.println("VOCÊ PERDEU A VEZ!");
+            System.out.println();
         }
     }
 

@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.Scanner;
+import java.sql.SQLOutput;
 
 public class Acao {
     public void movimentacao(Tabuleiro tabuleiroAtual, Personagem personagemAtual) {
@@ -10,8 +10,15 @@ public class Acao {
         tabuleiroAtual.imprimeTabuleiro();
     }
 
-    public void atacar(Tabuleiro tabuleiroAtual, Personagem atacante, Personagem defensor){
-
+    public void atacar(Personagem atacante, Personagem defensor){
+        if(verificaDistancia(atacante, defensor)) {
+            defensor.setPontoVida(dano(atacante, defensor));
+            defensor.setForcaDefesa(atacante.getForcaAtaque());//att a defesa do defensor
+        }
+        else{
+            System.out.println("O " + defensor.getNome() + " NÃO ESTÁ NO ALCANCE!");
+            System.out.println("VOCÊ PERDEU A VEZ!");
+        }
     }
 
     public  void defender(Personagem atual){ // A força de defesa do personagem é restaurada à inicial
@@ -39,5 +46,17 @@ public class Acao {
          oponente.setPontoVida(aux);
         }
 
+    }
+
+    private boolean verificaDistancia(Personagem atacante, Personagem defensor){
+        return (atacante.getAlcance() >= calculaDistancia(atacante, defensor));
+    }
+
+    private int calculaDistancia(Personagem atacante, Personagem defensor){
+        return Math.max(Math.abs(atacante.getPos()[0] - defensor.getPos()[0]), Math.abs(atacante.getPos()[1] - defensor.getPos()[1]));
+    }
+
+    private int dano(Personagem atacante, Personagem defensor){
+        return Math.max(0, atacante.getForcaAtaque() - defensor.getForcaDefesa());
     }
 }

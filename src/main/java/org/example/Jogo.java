@@ -23,7 +23,7 @@ public class Jogo {
             informacoes(p1);
             informacoes(p2);
             System.out.println(" ");
-             rodada(atual, oponente, tabuleiro1);
+             rodada(atual, oponente, tabuleiro1);//ta faltando imprimir o tabuleiro no meio das rodadas
              if(atual == p1) {
                  atual = p2;
                  oponente = p1;
@@ -32,7 +32,7 @@ public class Jogo {
                 atual = p1;
                 oponente = p2;
             }
-                atual.setPontoVida(atual.getPontoVida()-20); // Teste só pra sair do while
+               // atual.setPontoVida(atual.getPontoVida()-20); // Teste só pra sair do while
         }
         if(p1.getPontoVida()<=0)
             System.out.println("FIM DE JOGO! " + p2.getNome() + " é o grande VENCEDOR!");
@@ -63,7 +63,7 @@ public class Jogo {
                     acao.movimentacao(tabuleiro1, p1);
                     break;
                 case "2":
-                    //acao.atacar(); Complementar quando implementar a função "ATACAR"
+                    acao.atacar(p1, p2);
                     break;
                 case "3":
                     acao.defender(p1);

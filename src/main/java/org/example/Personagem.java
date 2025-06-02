@@ -21,7 +21,7 @@ Personagem {
         this.forcaDefesa = forcaDefesa;
         this.alcance = alcance;
         this.indicaPlayer = indicaPlayer;//Indica se é o player 1 ou player 2
-        this.tipoPersonagem=tipoPersonagem;
+        this.tipoPersonagem = tipoPersonagem;
     }
 
     public int getPontoVida() {
@@ -44,11 +44,16 @@ Personagem {
         return alcance;
     }
 
-    public  int getTipoPersonagem(){ return tipoPersonagem; }
+    public int getTipoPersonagem() { return tipoPersonagem;}
 
     public int getIndicaPlayer() {
         return indicaPlayer;
     }
+
+    public int[] getPos() {
+        return posAtual;
+    }
+
 
     public void setAlcance(int alcance) {
         this.alcance = alcance;
@@ -58,12 +63,18 @@ Personagem {
         this.forcaAtaque = forcaAtaque;
     }
 
-    public void setForcaDefesa(int forcaDefesa) {
-        this.forcaDefesa = forcaDefesa;
+    public void setForcaDefesa(int dano) {
+
+        forcaDefesa = Math.max(0, forcaDefesa - dano) ;
     }
 
-    public void setPontoVida(int pontoVida) {
-        this.pontoVida = pontoVida;
+    public void setPontoVida(int dano) {
+        pontoVida = pontoVida - dano;
+    }
+
+    public void setPos(int linha, int coluna) {
+        posAtual[0] = linha;
+        posAtual[1] = coluna;
     }
 
     public void defineNome(String s) {
@@ -74,13 +85,6 @@ Personagem {
         System.out.println("Seu nome é: " + nome);
     }
 
-    public void setPos(int linha, int coluna) {
-        posAtual[0] = linha;
-        posAtual[1] = coluna;
-    }
 
-    public int [] getPos() {
-        return posAtual;
-    }
 }
 

@@ -7,14 +7,14 @@ public class Acao {
         //Scanner teclado = new Scanner(System.in);
         String escolha = tabuleiroAtual.insereMovimento(personagemAtual);
         tabuleiroAtual.setPos(personagemAtual, oponente, escolha);
-        tabuleiroAtual.imprimeTabuleiro();
+        //tabuleiroAtual.imprimeTabuleiro();
     }
 
     public void atacar(Personagem atacante, Personagem defensor, Tabuleiro tabuleiro){
         if(verificaDistancia(atacante, defensor)) {
             defensor.setPontoVida(dano(atacante, defensor));
             defensor.setForcaDefesa(atacante.getForcaAtaque());//att a defesa do defensor
-            tabuleiro.imprimeTabuleiro();
+            //tabuleiro.imprimeTabuleiro();
         }
         else{
             System.out.println("O " + defensor.getNome() + " NÃO ESTÁ NO ALCANCE!");

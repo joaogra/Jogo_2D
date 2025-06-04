@@ -13,7 +13,7 @@ public class Jogo {
         Personagem oponente = p2;
         Tabuleiro tabuleiro1 = new Tabuleiro(p1,p2);
 
-        tabuleiro1.imprimeTabuleiro();
+        //tabuleiro1.imprimeTabuleiro();
         //rodada(p1,tabuleiro1);
         //rodada(p2,tabuleiro1);
         //tabuleiro1.setPos(p1, "a", p1.getIndicaPlayer());
@@ -22,6 +22,7 @@ public class Jogo {
         while (p1.getPontoVida() > 0 && p2.getPontoVida() > 0 && querSair){
             informacoes(p1);
             informacoes(p2);
+            tabuleiro1.imprimeTabuleiro();
             System.out.println(" ");
              rodada(atual, oponente, tabuleiro1);//ta faltando imprimir o tabuleiro no meio das rodadas
              if(atual == p1) {

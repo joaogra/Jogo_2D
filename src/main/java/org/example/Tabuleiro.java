@@ -4,12 +4,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Tabuleiro {
-    private int [][] tabuleiro = new int[10][10];
+    private String [][] tabuleiro = new String[10][10];
 
     public Tabuleiro(Personagem p1, Personagem p2){
         for(int linha = 0; linha < 10; linha++){
             for(int coluna = 0; coluna < 10; coluna++){
-                tabuleiro[linha][coluna] = 0;
+                tabuleiro[linha][coluna] = "•";//"o"
             }
         }
         startPosition(p1,p2);
@@ -20,15 +20,15 @@ public class Tabuleiro {
         int linha = posicao.nextInt(10);
         int coluna = posicao.nextInt(10);
         p1.setPos(linha, coluna);
-        tabuleiro[linha][coluna] = 1;
+        tabuleiro[linha][coluna] = "P1";
         System.out.println("O Jogador 1 está na linha " + (linha+1) + " e na coluna " + (coluna+1));
 
         do {
             linha = posicao.nextInt(10);
             coluna = posicao.nextInt(10);
-        }while(tabuleiro[linha][coluna] == 1);
+        }while(tabuleiro[linha][coluna].equals("P1"));
         p2.setPos(linha, coluna);
-        tabuleiro[linha][coluna] = 2;
+        tabuleiro[linha][coluna] = "P2";
         System.out.println("O Jogador 2 está na linha " + (linha+1) + " e na coluna " + (coluna+1));
     }
 
@@ -39,11 +39,12 @@ public class Tabuleiro {
         }
         System.out.println();
 
+
         for(int linha = 0; linha < 10; linha++){
             System.out.printf("L %2d|" , (linha + 1));
 
             for(int coluna = 0; coluna < 10; coluna++){
-                System.out.printf(" %2d ",tabuleiro[linha][coluna]);
+                System.out.printf(" %2s ",tabuleiro[linha][coluna]);
             }
 
             System.out.println();
@@ -51,13 +52,13 @@ public class Tabuleiro {
         System.out.println();
     }
 
-    public void setPos(Personagem p, String direcao,int indicePersonagem){
+    public void setPos(Personagem p, Personagem p2, String direcao){
         do {
             switch (direcao) {
                 case "C":
-                    if (p.getPos()[0] != 0) {//Verifica se esta na linha 0
-                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = 0;
-                        tabuleiro[p.getPos()[0] - 1][p.getPos()[1]] = indicePersonagem;//anda para cima
+                    if (p.getPos()[0] != 0 && tabuleiro[p.getPos()[0] - 1][p.getPos()[1]].equals("•") ) {//Verifica se esta na linha 0
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "•";
+                        tabuleiro[p.getPos()[0] - 1][p.getPos()[1]] = p.getIndicaPlayer();//anda para cima
                         p.setPos(p.getPos()[0] - 1, p.getPos()[1]);//att a posicao do personagem
                         return;
                     }
@@ -66,9 +67,9 @@ public class Tabuleiro {
                     break;//repete o loop
 
                 case "B":
-                    if (p.getPos()[0] != 9) {//Verifica se esta na 9
-                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = 0;
-                        tabuleiro[p.getPos()[0] + 1][p.getPos()[1]] = indicePersonagem;//anda para baixo
+                    if (p.getPos()[0] != 9 && tabuleiro[p.getPos()[0] + 1][p.getPos()[1]].equals("•")) {//Verifica se esta na 9
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "•";
+                        tabuleiro[p.getPos()[0] + 1][p.getPos()[1]] = p.getIndicaPlayer();//anda para baixo
                         p.setPos(p.getPos()[0] + 1, p.getPos()[1]);
                         return;
                     }
@@ -77,9 +78,9 @@ public class Tabuleiro {
                     break;
 
                 case "D":
-                    if (p.getPos()[1] != 9) {//Verifica se esta na coluna 9
-                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = 0;
-                        tabuleiro[p.getPos()[0]][p.getPos()[1] + 1] = indicePersonagem;//anda para a direita
+                    if (p.getPos()[1] != 9 && tabuleiro[p.getPos()[0]][p.getPos()[1] + 1].equals("•")) {//Verifica se esta na coluna 9
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "•";
+                        tabuleiro[p.getPos()[0]][p.getPos()[1] + 1] = p.getIndicaPlayer();//anda para a direita
                         p.setPos(p.getPos()[0], p.getPos()[1] + 1);
                         return;
                     }
@@ -88,9 +89,9 @@ public class Tabuleiro {
                     break;
 
                 case "E":
-                    if (p.getPos()[1] != 0) {//Verifica se esta na coluna 0
-                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = 0;
-                        tabuleiro[p.getPos()[0]][p.getPos()[1] - 1] = indicePersonagem;//Anda para a esquerda
+                    if (p.getPos()[1] != 0 && tabuleiro[p.getPos()[0]][p.getPos()[1] - 1].equals("•")) {//Verifica se esta na coluna 0
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "•";
+                        tabuleiro[p.getPos()[0]][p.getPos()[1] - 1] = p.getIndicaPlayer();//Anda para a esquerda
                         p.setPos(p.getPos()[0], p.getPos()[1] - 1);
                         return;
                     }
@@ -124,7 +125,7 @@ public class Tabuleiro {
                 case "D":
                     return "D";
                 default:
-                    System.out.println("Jogador Invalida!");
+                    System.out.println("Jogada Inválida!");
                     break;
             }
         }while(true);

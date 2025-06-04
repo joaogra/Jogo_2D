@@ -3,10 +3,10 @@ package org.example;
 import java.sql.SQLOutput;
 
 public class Acao {
-    public void movimentacao(Tabuleiro tabuleiroAtual, Personagem personagemAtual) {
+    public void movimentacao(Tabuleiro tabuleiroAtual, Personagem personagemAtual, Personagem oponente) {
         //Scanner teclado = new Scanner(System.in);
         String escolha = tabuleiroAtual.insereMovimento(personagemAtual);
-        tabuleiroAtual.setPos(personagemAtual, escolha, personagemAtual.getIndicaPlayer());
+        tabuleiroAtual.setPos(personagemAtual, oponente, escolha);
         tabuleiroAtual.imprimeTabuleiro();
     }
 

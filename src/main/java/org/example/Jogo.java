@@ -40,12 +40,12 @@ public class Jogo {
             System.out.println("FIM DE JOGO! " + p1.getNome() + " é o grande VENCEDOR!");
     }
 
-    public void informacoes(Personagem p){
-        System.out.println(p.getNome());
-        System.out.println("Vida: " + p.getPontoVida());
-        System.out.println("Força de Ataque: " + p.getForcaAtaque());
-        System.out.println("Força de Defesa: " + p.getForcaDefesa());
-        System.out.println("Alcance: " + p.getAlcance());
+    public void informacoes(Personagem p1){
+        System.out.println(p1.getNome());
+        System.out.println("Vida: " + p1.getPontoVida());
+        System.out.println("Força de Ataque: " + p1.getForcaAtaque());
+        System.out.println("Força de Defesa: " + p1.getForcaDefesa());
+        System.out.println("Alcance: " + p1.getAlcance());
         System.out.println();
     }
 
@@ -60,7 +60,7 @@ public class Jogo {
         do {
             switch (escolha) {
                 case "1":
-                    acao.movimentacao(tabuleiro1, p1);
+                    acao.movimentacao(tabuleiro1, p1, p2);
                     break;
                 case "2":
                     acao.atacar(p1, p2, tabuleiro1);

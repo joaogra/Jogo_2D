@@ -12,8 +12,8 @@ public class Main {
 
         switch (tipo){
             case 1 , 2:
-                jog1 = menu.seletordePersonagem(1);
-                jog2 = menu.seletordePersonagem(2);
+                jog1 = menu.seletordePersonagem("P1");
+                jog2 = menu.seletordePersonagem("P2");
                 break;
 
             case 3:

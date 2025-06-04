@@ -8,10 +8,10 @@ Personagem {
     private String nome;
     private int forcaAtaque, forcaDefesa, alcance, pontoVida;
     private final int tipoPersonagem;
-    private final int indicaPlayer;//indica se é o player 1 ou o player 2
+    private final String indicaPlayer;//indica se é o player 1 ou o player 2
     private int[] posAtual = new int[2];
 
-    public Personagem(String nome, int forcaAtaque, int forcaDefesa, int alcance, int indicaPlayer, int tipoPersonagem) {
+    public Personagem(String nome, int forcaAtaque, int forcaDefesa, int alcance, String indicaPlayer, int tipoPersonagem) {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Digite o nome do personagem: ");
         defineNome(teclado.nextLine());
@@ -46,7 +46,7 @@ Personagem {
 
     public int getTipoPersonagem() { return tipoPersonagem;}
 
-    public int getIndicaPlayer() {
+    public String getIndicaPlayer() {
         return indicaPlayer;
     }
 

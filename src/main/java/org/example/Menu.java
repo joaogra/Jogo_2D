@@ -38,7 +38,7 @@ public class Menu {
         return 0;
     }
 
-     public Personagem seletordePersonagem (int indice){
+     public Personagem seletordePersonagem (String indice){
         System.out.println("Escolha seu personagem: ");
         System.out.println("1 - Arqueiro / 2 - Guerreiro / 3 - Mago");
         Scanner teclado = new Scanner(System.in);

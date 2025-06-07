@@ -58,4 +58,23 @@ public class Menu {
         }while(teste);
     return null;
     }
+    public boolean repetir (){
+        Scanner teclado = new Scanner(System.in);
+        String resp = "";
+        do {
+            System.out.println("Quer jogar de novo?");
+            System.out.println("1 - Jogar denovo  |  2 - Sair");
+            resp = teclado.nextLine();
+            switch (resp) {
+                case "1":
+                    return true;
+                case "2":
+                    return false;
+                default:
+                    System.out.println("Opção invalida!");
+                    break;
+            }
+        }while(!(resp.equals("1") || resp.equals("2")));
+        return false;
+    }
 }

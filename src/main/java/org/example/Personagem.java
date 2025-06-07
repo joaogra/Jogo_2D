@@ -10,6 +10,7 @@ Personagem {
     private final int tipoPersonagem;
     private final String indicaPlayer;//indica se é o player 1 ou o player 2
     private int[] posAtual = new int[2];
+    private boolean contador = true;
 
     public Personagem(String nome, int forcaAtaque, int forcaDefesa, int alcance, String indicaPlayer, int tipoPersonagem) {
         Scanner teclado = new Scanner(System.in);
@@ -54,7 +55,9 @@ Personagem {
         return posAtual;
     }
 
+    public boolean getContador(){ return contador;}
 
+    public void setContador(boolean contador) { this.contador = contador;}
     public void setAlcance(int alcance) {
         this.alcance = alcance;
     }
@@ -68,6 +71,9 @@ Personagem {
         forcaDefesa = Math.max(0, forcaDefesa - dano) ;
     }
 
+    public void setDefesaMax(int defesaMax) {
+        forcaDefesa = defesaMax;
+    }
     public void setPontoVida(int dano) {
         pontoVida = pontoVida - dano;
     }

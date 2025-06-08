@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Menu {
     public int modoDeJogo (){
-        System.out.println("Olá, seja bem vindo ao:");
         System.out.println("  ____  _   _ _____ _              __ \n" +
                 " |  _ \\| | | | ____| |       ___  / _|\n" +
                 " | | | | | | |  _| | |      / _ \\| |_ \n" +
@@ -18,6 +17,15 @@ public class Menu {
                 " | |___|  _  |/ ___ \\| |  | |  __/| | |_| | |\\  |___) |\n" +
                 "  \\____|_| |_/_/   \\_\\_|  |_|_|  |___\\___/|_| \\_|____/ \n" +
                 "                                                       ");
+        System.out.println("Seja muito bem vindo ao jogo DUEL OF CHAMPIONS! Esse é um jogo de batalhas por turnos entre 2 personagens. Temos a opção de jogador conta jogador e jogador contra máquina.\n" +
+                "O jogo possui 3 tipos de personagem:\n" +
+                "● Arqueiro: Possui alcance de ataque à distância, mas defesa mais baixa.\n" +
+                "● Guerreiro: É mais resistente e possui ataque corpo a corpo.\n" +
+                "● Mago: Pode lançar feitiços especiais, mas possui defesa fraca.\n" +
+                "\n" +
+                "Toda a dinâmica do jogo ocorre via console e as interações são sempre via teclado.  \n" +
+                "Muito obrigado por jogar e aproveite!");
+        System.out.println();
         System.out.println("Escolha seu modo de jogo:");
         System.out.println("1 - Player vs Player | 2 - Player vs Bot | 3 - Sair" );
         Scanner teclado = new Scanner(System.in);

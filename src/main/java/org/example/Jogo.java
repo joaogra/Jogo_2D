@@ -16,8 +16,8 @@ public class Jogo {
         //tabuleiro1.imprimeTabuleiro();
 
         while (p1.getPontoVida() > 0 && p2.getPontoVida() > 0 ){
-            informacoes(p1);
-            informacoes(p2);
+            informacoes(p1, p2);
+            //informacoes(p2);
             tabuleiro1.imprimeTabuleiro();
             System.out.println(" ");
                 rodada(atual, oponente, tabuleiro1);//ta faltando imprimir o tabuleiro no meio das rodadas
@@ -37,13 +37,13 @@ public class Jogo {
             System.out.println("FIM DE JOGO! " + p1.getNome() + " é o grande VENCEDOR!");
     }
 
-    private void informacoes(Personagem p1){
-        System.out.println(p1.getIndicaPlayer() + ":");
-        System.out.println("Nome: " + p1.getNome());
-        System.out.println("Vida: " + p1.getPontoVida());
-        System.out.println("Força de Ataque: " + p1.getForcaAtaque());
-        System.out.println("Força de Defesa: " + p1.getForcaDefesa());
-        System.out.println("Alcance: " + p1.getAlcance());
+    private void informacoes(Personagem p1, Personagem p2){
+        System.out.println(p1.getIndicaPlayer() + ":" + "                      " + p2.getIndicaPlayer() + ":");
+        //System.out.println("Nome: " + p1.getNome() + "               " + "Nome: " + p2.getNome());
+        System.out.println("Vida: " + p1.getPontoVida() + "                " + "Vida: " + p2.getPontoVida());
+        System.out.println("Força de Ataque: " + p1.getForcaAtaque() + "       " + "Força de Ataque: " + p2.getForcaAtaque());
+        System.out.println("Força de Defesa: " + p1.getForcaDefesa() + "       " + "Força de Defesa: " + p2.getForcaDefesa());
+        System.out.println("Alcance: " + p1.getAlcance() + "               " + "Alcance: " + p2.getAlcance() );
         System.out.println();
     }
 

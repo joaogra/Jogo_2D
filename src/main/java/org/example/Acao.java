@@ -16,6 +16,7 @@ public class Acao {
             System.out.println("O " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " sofreu " + Math.max(dano(atacante, defensor) - defensor.getForcaDefesa(),dano(atacante,defensor))  + " de dano");
             defensor.setForcaDefesa(atacante.getForcaAtaque());//att a defesa do defensor
             System.out.println("A defesa atual do " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " = " + defensor.getForcaDefesa());
+            System.out.println();
         }
         else{
             System.out.println("O " + defensor.getNome() + " NÃO ESTÁ NO ALCANCE!");
@@ -46,10 +47,12 @@ public class Acao {
                 System.out.println("Não pode mais usar essa habilidade!");
                 atual.setAlcance(atual.getAlcance() + 1);
                 atual.setContador(false);
+                System.out.println();
             }
             else {
                 System.out.println("Já usou a habilidade uma vez!");
                 System.out.println("PERDEU A VEZ!");
+                System.out.println();
             }
         }
 
@@ -58,11 +61,13 @@ public class Acao {
                 atual.setForcaAtaque(atual.getForcaAtaque() * 2);
                 System.out.println("O seu ataque aumentou para 30!");
                 System.out.println("Não pode mais usar essa habilidade!");
+                System.out.println();
                 atual.setContador(false);
             }
             else {
                 System.out.println("Já usou a habilidade uma vez!");
                 System.out.println("PERDEU A VEZ!");
+                System.out.println();
             }
         }
 
@@ -73,14 +78,16 @@ public class Acao {
                 atual.setPontoVida(oponente.getPontoVida());
                 oponente.setPontoVida(aux);
                 System.out.println("Trocou de vida com o oponente!");
-                System.out.println("Agora " + atual.getNome() + "tem " + atual.getPontoVida());
-                System.out.println("Agora " + oponente.getNome() + "tem " + oponente.getPontoVida());
+                System.out.println("Agora " + atual.getNome() + " tem " + atual.getPontoVida());
+                System.out.println("Agora " + oponente.getNome() + " tem " + oponente.getPontoVida());
                 System.out.println("Não pode mais usar essa habilidade!");
+                System.out.println();
                 atual.setContador(false);
             }
             else{
                 System.out.println("Já usou a habilidade uma vez!");
                 System.out.println("PERDEU A VEZ!");
+                System.out.println();
             }
         }
 

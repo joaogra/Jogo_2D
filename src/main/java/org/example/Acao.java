@@ -12,7 +12,7 @@ public class Acao {
 
     public void atacar(Personagem atacante, Personagem defensor, Tabuleiro tabuleiro){
         if(verificaDistancia(atacante, defensor)) {
-            defensor.setPontoVida(dano(atacante, defensor));
+            defensor.setPontoVidaDano(dano(atacante, defensor));
             System.out.println("O " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " sofreu " + Math.max(dano(atacante, defensor) - defensor.getForcaDefesa(),dano(atacante,defensor))  + " de dano");
             defensor.setForcaDefesa(atacante.getForcaAtaque());//att a defesa do defensor
             System.out.println("A defesa atual do " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " = " + defensor.getForcaDefesa());
@@ -58,6 +58,7 @@ public class Acao {
                 atual.setForcaAtaque(atual.getForcaAtaque() * 2);
                 System.out.println("O seu ataque aumentou para 30!");
                 System.out.println("Não pode mais usar essa habilidade!");
+                atual.setContador(false);
             }
             else {
                 System.out.println("Já usou a habilidade uma vez!");
@@ -75,6 +76,7 @@ public class Acao {
                 System.out.println("Agora " + atual.getNome() + "tem " + atual.getPontoVida());
                 System.out.println("Agora " + oponente.getNome() + "tem " + oponente.getPontoVida());
                 System.out.println("Não pode mais usar essa habilidade!");
+                atual.setContador(false);
             }
             else{
                 System.out.println("Já usou a habilidade uma vez!");

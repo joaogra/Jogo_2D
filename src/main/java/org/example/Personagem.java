@@ -74,8 +74,11 @@ Personagem {
     public void setDefesaMax(int defesaMax) {
         forcaDefesa = defesaMax;
     }
-    public void setPontoVida(int dano) {
+    public void setPontoVidaDano(int dano) {
         pontoVida = pontoVida - dano;
+    }
+    public void setPontoVida(int vida) {
+        pontoVida = vida;
     }
 
     public void setPos(int linha, int coluna) {

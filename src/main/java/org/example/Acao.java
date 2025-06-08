@@ -13,9 +13,9 @@ public class Acao {
     public void atacar(Personagem atacante, Personagem defensor, Tabuleiro tabuleiro){
         if(verificaDistancia(atacante, defensor)) {
             defensor.setPontoVida(dano(atacante, defensor));
+            System.out.println("O " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " sofreu " + Math.max(dano(atacante, defensor) - defensor.getForcaDefesa(),dano(atacante,defensor))  + " de dano");
             defensor.setForcaDefesa(atacante.getForcaAtaque());//att a defesa do defensor
-            System.out.println("O " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " sofreu " + dano(atacante, defensor) + " de dano");
-            System.out.println("A defesa atual do" + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " = " + defensor.getForcaDefesa());
+            System.out.println("A defesa atual do " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " = " + defensor.getForcaDefesa());
         }
         else{
             System.out.println("O " + defensor.getNome() + " NÃO ESTÁ NO ALCANCE!");

@@ -1,9 +1,8 @@
-package org.example;
+package view;
 
-import java.util.*;
+import org.inGame.Jogo;
+import org.inGame.Personagem;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         Menu menu = new Menu();
@@ -11,22 +10,21 @@ public class Main {
         Personagem jog1 = null, jog2 = null;
         do {
 
-            switch (menu.modoDeJogo()) {
-                case 1:
+            switch (menu.modoDeJogo()) { // Define o modo de jogo
+                case 1: // Player vs Player
                     jog1 = menu.seletordePersonagem("P1");
                     jog2 = menu.seletordePersonagem("P2");
-                    jogo.jogo(jog1, jog2);
+                    jogo.jogoMultiPlayer(jog1, jog2);
                     break;
-                case 2:
+                case 2: // Player vs Bot
                     jog1 = menu.seletordePersonagem("P1");
                     jog2 = menu.seletordePersonagemBot("P2");
                     jogo.jogoBot(jog1, jog2);
                     break;
-                case 3:
+                case 3: // Sair
                     return;
             }
-        } while (menu.repetir());
+        } while (menu.repetirJogo());
     }
-
 }
 

@@ -1,4 +1,4 @@
-package org.example;
+package org.inGame;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Tabuleiro {
     private String [][] tabuleiro = new String[10][10];
 
-    public Tabuleiro(Personagem p1, Personagem p2){
+    protected Tabuleiro(Personagem p1, Personagem p2){
         for(int linha = 0; linha < 10; linha++){
             for(int coluna = 0; coluna < 10; coluna++){
                 tabuleiro[linha][coluna] = "•";//"o"
@@ -15,7 +15,7 @@ public class Tabuleiro {
         startPosition(p1,p2);
     }
 
-    private void startPosition(Personagem p1, Personagem p2){
+    private void startPosition(Personagem p1, Personagem p2){ // Define a posição inicial dos jogadores
         Random posicao = new Random();
         int linha = posicao.nextInt(10);
         int coluna = posicao.nextInt(10);
@@ -32,7 +32,7 @@ public class Tabuleiro {
         System.out.println("O Jogador 2 está na linha " + (linha+1) + " e na coluna " + (coluna+1));
     }
 
-    public void imprimeTabuleiro(){
+    protected void imprimeTabuleiro(){
         System.out.print("C   | ");
         for(int i = 0; i < 10; i++) {
             System.out.printf("%2d  ", i + 1);
@@ -52,7 +52,7 @@ public class Tabuleiro {
         System.out.println();
     }
 
-    public void setPos(Personagem p,String direcao){
+    protected void setPos(Personagem p,String direcao){
         do {
             switch (direcao) {
                 case "C":
@@ -107,7 +107,7 @@ public class Tabuleiro {
         }while(true);//repete o switch se der Posicao invalida
     }
 
-    public String insereMovimento(Personagem personagemAtual){
+    protected String insereMovimento(Personagem personagemAtual){ // Permite o usuário escolher a direção do movimento
         System.out.println("Vez de " +personagemAtual.getNome() +":");
         Scanner teclado = new Scanner(System.in);
         do {

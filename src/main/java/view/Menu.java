@@ -1,10 +1,12 @@
-package org.example;
+package view;
 
+
+import org.inGame.Personagem;
 
 import java.util.Scanner;
 
 public class Menu {
-    public int modoDeJogo (){
+    protected int modoDeJogo (){
         System.out.println("  ____  _   _ _____ _              __ \n" +
                 " |  _ \\| | | | ____| |       ___  / _|\n" +
                 " | | | | | | |  _| | |      / _ \\| |_ \n" +
@@ -29,7 +31,6 @@ public class Menu {
         System.out.println("Escolha seu modo de jogo:");
         System.out.println("1 - Player vs Player | 2 - Player vs Bot | 3 - Sair" );
         Scanner teclado = new Scanner(System.in);
-        boolean teste = false;
         do {
             String resp = teclado.nextLine();
             switch (resp) {
@@ -39,35 +40,32 @@ public class Menu {
                     return 2;
                 case "3":
                     return 3;
-                default: teste = true;
+                default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
-        }while(teste);
-        return 0;
+        }while(true);
     }
 
-     public Personagem seletordePersonagem (String indice){
+     protected Personagem seletordePersonagem (String indice){ // Menu de Seleção de Personagem
         System.out.println("Escolha seu personagem: " + indice);
         System.out.println("1 - Arqueiro / 2 - Guerreiro / 3 - Mago");
         Scanner teclado = new Scanner(System.in);
-        boolean teste = false;
         do {
             String resp = teclado.nextLine();
             switch (resp) {
                 case "1":
-                    return new Personagem("Arqueiro", 8, 5, 5 , indice, 1);
+                    return new Personagem( 8, 5, 5 , indice, 1);
                 case "2":
-                    return new Personagem("Guerreiro", 15, 10, 1, indice, 2);
+                    return new Personagem( 15, 10, 1, indice, 2);
                 case "3":
-                    return new Personagem("Mago", 10, 7, 3, indice, 3);
-                default: teste = true;
+                    return new Personagem( 10, 7, 3, indice, 3);
+                default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
-        }while(teste);
-    return null;
+        }while(true);
     }
 
-    public Personagem seletordePersonagemBot(String indice){
+    protected Personagem seletordePersonagemBot(String indice){ // Seletor de Personagem pro BOT
         System.out.println("Escolha o personagem do BOT: " + indice);
         System.out.println("1 - Arqueiro / 2 - Guerreiro / 3 - Mago");
         Scanner teclado = new Scanner(System.in);
@@ -76,11 +74,11 @@ public class Menu {
             String resp = teclado.nextLine();
             switch (resp) {
                 case "1":
-                    return new Personagem("Arqueiro", 8, 5, 5 , indice, 1);
+                    return new Personagem(8, 5, 5 , indice, 1);
                 case "2":
-                    return new Personagem("Guerreiro", 15, 10, 1, indice, 2);
+                    return new Personagem( 15, 10, 1, indice, 2);
                 case "3":
-                    return new Personagem("Mago", 10, 7, 3, indice, 3);
+                    return new Personagem( 10, 7, 3, indice, 3);
                 default: teste = true;
                     System.out.println("Opção inválida! Tente novamente.");
             }
@@ -88,7 +86,7 @@ public class Menu {
         return null;
     }
 
-    public boolean repetir (){
+    protected boolean repetirJogo (){
         Scanner teclado = new Scanner(System.in);
         String resp = "";
         do {

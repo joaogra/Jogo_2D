@@ -1,18 +1,17 @@
-package org.example;
+package org.inGame;
 
-import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class
 Personagem {
     private String nome;
     private int forcaAtaque, forcaDefesa, alcance, pontoVida;
-    private final int tipoPersonagem;
+    private final int tipoPersonagem; // Indica se o personagem é Arqueiro, Guerreiro ou Mago
     private final String indicaPlayer;//indica se é o player 1 ou o player 2
     private int[] posAtual = new int[2];
     private boolean contador = true;
 
-    public Personagem(String nome, int forcaAtaque, int forcaDefesa, int alcance, String indicaPlayer, int tipoPersonagem) {
+    public Personagem(int forcaAtaque, int forcaDefesa, int alcance, String indicaPlayer, int tipoPersonagem) {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Digite o nome do personagem: ");
         defineNome(teclado.nextLine());
@@ -21,79 +20,76 @@ Personagem {
         this.forcaAtaque = forcaAtaque;
         this.forcaDefesa = forcaDefesa;
         this.alcance = alcance;
-        this.indicaPlayer = indicaPlayer;//Indica se é o player 1 ou player 2
+        this.indicaPlayer = indicaPlayer;
         this.tipoPersonagem = tipoPersonagem;
     }
 
-    public int getPontoVida() {
+    protected int getPontoVida() {
         return pontoVida;
     }
 
-    public String getNome() {
+    protected String getNome() {
         return nome;
     }
 
-    public int getForcaAtaque() {
+    protected int getForcaAtaque() {
         return forcaAtaque;
     }
 
-    public int getForcaDefesa() {
+    protected int getForcaDefesa() {
         return forcaDefesa;
     }
 
-    public int getAlcance() {
+    protected int getAlcance() {
         return alcance;
     }
 
-    public int getTipoPersonagem() { return tipoPersonagem;}
+    protected int getTipoPersonagem() { return tipoPersonagem;}
 
-    public String getIndicaPlayer() {
+    protected String getIndicaPlayer() {
         return indicaPlayer;
     }
 
-    public int[] getPos() {
+    protected int[] getPos() {
         return posAtual;
     }
 
-    public boolean getContador(){ return contador;}
+    protected boolean getContador(){ return contador;}
 
 
-    public void setContador(boolean contador) { this.contador = contador;}
-    public void setAlcance(int alcance) {
+    protected void setContador(boolean contador) { this.contador = contador;}
+    protected void setAlcance(int alcance) {
         this.alcance = alcance;
     }
 
-    public void setForcaAtaque(int forcaAtaque) {
+    protected void setForcaAtaque(int forcaAtaque) {
         this.forcaAtaque = forcaAtaque;
     }
 
-    public void setForcaDefesa(int dano) {
+    protected void setForcaDefesa(int dano) {
 
         forcaDefesa = Math.max(0, forcaDefesa - dano) ;
     }
 
-    public void setDefesaMax(int defesaMax) {
+    protected void setDefesaMax(int defesaMax) {
         forcaDefesa = defesaMax;
     }
-    public void setPontoVidaDano(int dano) {
+    protected void setPontoVidaDano(int dano) {
         pontoVida = pontoVida - dano;
     }
-    public void setPontoVida(int vida) {
+    protected void setPontoVida(int vida) {
         pontoVida = vida;
     }
 
-    public void setPos(int linha, int coluna) {
+    protected void setPos(int linha, int coluna) {
         posAtual[0] = linha;
         posAtual[1] = coluna;
     }
 
-    public void defineNome(String s) {
+    private void defineNome(String s) {
         nome = s;
     }
 
-    public void imprimeNome() {
-        System.out.println("Seu nome é: " + nome);
-    }
 
 
 }

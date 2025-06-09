@@ -1,31 +1,27 @@
-package org.example;
-
-import java.sql.SQLOutput;
+package org.inGame;
 
 public class Acao {
-    public void movimentacao(Tabuleiro tabuleiroAtual, Personagem personagemAtual) {
-        //Scanner teclado = new Scanner(System.in);
+    protected void movimentacao(Tabuleiro tabuleiroAtual, Personagem personagemAtual) {
         String escolha = tabuleiroAtual.insereMovimento(personagemAtual);
         tabuleiroAtual.setPos(personagemAtual, escolha);
-        //tabuleiroAtual.imprimeTabuleiro();
     }
 
-    public void atacar(Personagem atacante, Personagem defensor, Tabuleiro tabuleiro){
-        if(verificaDistancia(atacante, defensor)) {
+    protected void atacar(Personagem atacante, Personagem defensor){
+        if(verificaDistancia(atacante, defensor)) {//Se o defensor estiver no alcance do atacante
             defensor.setPontoVidaDano(dano(atacante, defensor));
             System.out.println("O " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " sofreu " + Math.max(dano(atacante, defensor) - defensor.getForcaDefesa(),dano(atacante,defensor))  + " de dano");
             defensor.setForcaDefesa(atacante.getForcaAtaque());//att a defesa do defensor
             System.out.println("A defesa atual do " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " = " + defensor.getForcaDefesa());
             System.out.println();
         }
-        else{
+        else{//Se o defensor estiver fora do alcance
             System.out.println("O " + defensor.getNome() + " NÃO ESTÁ NO ALCANCE!");
             System.out.println("VOCÊ PERDEU A VEZ!");
             System.out.println();
         }
     }
 
-    public  void defender(Personagem atual){ // A força de defesa do personagem é restaurada à inicial
+    protected  void defender(Personagem atual){ // A força de defesa do personagem é restaurada à inicial
         if(atual.getTipoPersonagem()==1) {
             atual.setDefesaMax(5);
             System.out.println("Alterando defesa atual para 5");
@@ -40,7 +36,7 @@ public class Acao {
         }
     }
 
-    public void ultimate(Personagem atual, Personagem oponente){
+    protected void ultimate(Personagem atual, Personagem oponente){
         if(atual.getTipoPersonagem()==1){
             if(atual.getContador()){
                 System.out.println("O seu alcance aumentou para 6!");

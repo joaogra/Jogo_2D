@@ -4,6 +4,7 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Jogo {
+    private boolean numDef = false;
     public void jogo(Personagem p1, Personagem p2) {
         Personagem atual = p1;
         Personagem oponente = p2;
@@ -32,9 +33,40 @@ public class Jogo {
                // atual.setPontoVida(atual.getPontoVida()-20); // Teste só pra sair do while
         }
         if(p1.getPontoVida()<=0)
-            System.out.println("FIM DE JOGO! " + p2.getNome() + " é o grande VENCEDOR!");
+            System.out.println("FIM DE JOGO! " + p2.getIndicaPlayer() + ": " + p2.getNome() +" é o grande VENCEDOR!");
         if (p2.getPontoVida()<=0)
-            System.out.println("FIM DE JOGO! " + p1.getNome() + " é o grande VENCEDOR!");
+            System.out.println("FIM DE JOGO! " + p2.getIndicaPlayer() + ": " + p1.getNome() + " é o grande VENCEDOR!");
+    }
+
+    public void jogoBot(Personagem p1, Personagem p2) {
+        Personagem atual = p1;
+        Personagem oponente = p2;
+        Tabuleiro tabuleiro1 = new Tabuleiro(p1,p2);
+        int contador = 1;
+        while (p1.getPontoVida() > 0 && p2.getPontoVida() > 0 ){
+            informacoes(p1, p2);
+            tabuleiro1.imprimeTabuleiro();
+            System.out.println(" ");
+            if(contador % 2 != 0) {
+                rodada(atual, oponente, tabuleiro1);
+            }
+            else{
+                rodadaBot(atual, oponente, tabuleiro1);
+            }
+            if(atual == p1) {
+                atual = p2;
+                oponente = p1;
+            }
+            else{
+                atual = p1;
+                oponente = p2;
+            }
+            contador = contador + 1;
+        }
+        if(p1.getPontoVida()<=0)
+            System.out.println("FIM DE JOGO! " + p2.getIndicaPlayer() + ": " + p2.getNome() +" é o grande VENCEDOR!");
+        if (p2.getPontoVida()<=0)
+            System.out.println("FIM DE JOGO! " + p2.getIndicaPlayer() + ": " + p1.getNome() + " é o grande VENCEDOR!");
     }
 
     private void informacoes(Personagem p1, Personagem p2){
@@ -59,7 +91,7 @@ public class Jogo {
             String escolha = teclado.nextLine();
             switch (escolha) {
                 case "1":
-                    acao.movimentacao(tabuleiro1, p1, p2);
+                    acao.movimentacao(tabuleiro1, p1);
                     break;
                 case "2":
                     acao.atacar(p1, p2, tabuleiro1);
@@ -79,5 +111,80 @@ public class Jogo {
                     break;
             }
         }while (teste);
+    }
+
+    private void rodadaBot(Personagem p1, Personagem p2, Tabuleiro tabuleiro1){
+        Acao acao = new Acao();
+        //Só pra evitar o BOT ficar defendendo duas vezes seguidas
+
+        //Mago usa a ult se tiver com vida baixa (< 50) e se a vida dele for menor que a do oponente
+        if(p1.getContador() && p1.getTipoPersonagem() == 3 && p1.getPontoVida() < 50 && p1.getPontoVida() < p2.getPontoVida()){
+            System.out.println("BOT usou a ultimate!");
+            acao.ultimate(p1,p2);
+            numDef = true;
+            return;
+        }
+
+        //Guerreiro ou arqueiro usa a ult no começo já que quase sempre vai valer a pena
+        if(p1.getContador() && (p1.getTipoPersonagem() == 1 || p1.getTipoPersonagem() == 2)) {
+            System.out.println("BOT usou a ultimate!");
+            acao.ultimate(p1, p2);
+            return;
+        }
+
+        //Se a defesa do BOT for zero e o BOT ter menos vida q o Player e ele ñ tiver defendido na ultima rodada ele usa o defender
+        if(p1.getPontoVida() <= p2.getPontoVida() && p1.getForcaDefesa() == 0 && numDef){
+            System.out.println("O BOT defendeu!");
+            acao.defender(p1);
+            numDef = false;
+            return;
+        }
+
+        //Se tiver no alcance o BOT vai atacar
+        if(calculaDistancia(p1,p2) <= p1.getAlcance()){
+            System.out.println("O BOT atacou!");
+            acao.atacar(p1, p2, tabuleiro1);
+            numDef = true;
+            return;
+        }
+
+
+        //Se o BOT tiver longe anda pra mais perto do Player
+        if(calculaDistancia(p1,p2) > p1.getAlcance()){
+            if(Math.abs(p1.getPos()[0] - p2.getPos()[0]) > p1.getAlcance()) {//Verifica se a linha q ta fora de alcance
+
+                if (p1.getPos()[0] > p2.getPos()[0]) {//Linha do bot maior q a do player entao anda pra cima
+                    tabuleiro1.setPos(p1,"C");
+                    System.out.println("P2 se moveu para cima");
+                    return;
+                }
+
+                if (p1.getPos()[0] < p2.getPos()[0]) {//Linha do bot menor q a do player entao anda pra baixo
+                    tabuleiro1.setPos(p1,"B");
+                    System.out.println("P2 se moveu para baixo");
+                    return;
+                }
+            }
+
+            if(Math.abs(p1.getPos()[1] - p2.getPos()[1]) > p1.getAlcance()) {//Verifica se a coluna q ta fora de alcance
+                if (p1.getPos()[1] > p2.getPos()[1]) {//Coluna do bot maior q a do player entao anda pra esquerda
+                    tabuleiro1.setPos(p1,"E");
+                    System.out.println("P2 se moveu para esquerda");
+                    return;
+                }
+
+                if (p1.getPos()[1] < p2.getPos()[1]) {//Linha do bot menor q a do player entao anda pra direita
+                    tabuleiro1.setPos(p1,"D");
+                    System.out.println("P2 se moveu para direita");
+                    return;
+                }
+            }
+        }
+
+
+    }
+    private int calculaDistancia(Personagem atacante, Personagem defensor){
+        System.out.println(Math.max(Math.abs(atacante.getPos()[0] - defensor.getPos()[0]), Math.abs(atacante.getPos()[1] - defensor.getPos()[1])));
+        return Math.max(Math.abs(atacante.getPos()[0] - defensor.getPos()[0]), Math.abs(atacante.getPos()[1] - defensor.getPos()[1]));
     }
 }

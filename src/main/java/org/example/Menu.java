@@ -47,7 +47,7 @@ public class Menu {
     }
 
      public Personagem seletordePersonagem (String indice){
-        System.out.println("Escolha seu personagem: ");
+        System.out.println("Escolha seu personagem: " + indice);
         System.out.println("1 - Arqueiro / 2 - Guerreiro / 3 - Mago");
         Scanner teclado = new Scanner(System.in);
         boolean teste = false;
@@ -66,6 +66,28 @@ public class Menu {
         }while(teste);
     return null;
     }
+
+    public Personagem seletordePersonagemBot(String indice){
+        System.out.println("Escolha o personagem do BOT: " + indice);
+        System.out.println("1 - Arqueiro / 2 - Guerreiro / 3 - Mago");
+        Scanner teclado = new Scanner(System.in);
+        boolean teste = false;
+        do {
+            String resp = teclado.nextLine();
+            switch (resp) {
+                case "1":
+                    return new Personagem("Arqueiro", 8, 5, 5 , indice, 1);
+                case "2":
+                    return new Personagem("Guerreiro", 15, 10, 1, indice, 2);
+                case "3":
+                    return new Personagem("Mago", 10, 7, 3, indice, 3);
+                default: teste = true;
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }while(teste);
+        return null;
+    }
+
     public boolean repetir (){
         Scanner teclado = new Scanner(System.in);
         String resp = "";
@@ -82,7 +104,6 @@ public class Menu {
                     System.out.println("Opção invalida!");
                     break;
             }
-        }while(!(resp.equals("1") || resp.equals("2")));
-        return false;
+        }while(true);
     }
 }

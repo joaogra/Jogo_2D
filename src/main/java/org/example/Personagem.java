@@ -57,6 +57,7 @@ Personagem {
 
     public boolean getContador(){ return contador;}
 
+
     public void setContador(boolean contador) { this.contador = contador;}
     public void setAlcance(int alcance) {
         this.alcance = alcance;

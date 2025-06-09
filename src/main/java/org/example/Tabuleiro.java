@@ -52,7 +52,7 @@ public class Tabuleiro {
         System.out.println();
     }
 
-    public void setPos(Personagem p, Personagem p2, String direcao){
+    public void setPos(Personagem p,String direcao){
         do {
             switch (direcao) {
                 case "C":

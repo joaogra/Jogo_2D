@@ -46,7 +46,7 @@ public class Menu {
         }while(true);
     }
 
-     protected Personagem seletordePersonagem (String indice){ // Menu de Seleção de Personagem
+     protected Personagem seletordePersonagem(String indice){ // Menu de Seleção de Personagem
         System.out.println("Escolha seu personagem: " + indice);
         System.out.println("1 - Arqueiro / 2 - Guerreiro / 3 - Mago");
         Scanner teclado = new Scanner(System.in);
@@ -54,11 +54,11 @@ public class Menu {
             String resp = teclado.nextLine();
             switch (resp) {
                 case "1":
-                    return new Personagem( 8, 5, 5 , indice, 1);
+                    return new Personagem( 8, 5, 5 , indice, 1);//Arqueiro
                 case "2":
-                    return new Personagem( 15, 10, 1, indice, 2);
+                    return new Personagem( 15, 10, 1, indice, 2);//Guerreiro
                 case "3":
-                    return new Personagem( 10, 7, 3, indice, 3);
+                    return new Personagem( 10, 7, 3, indice, 3);//Mago
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }

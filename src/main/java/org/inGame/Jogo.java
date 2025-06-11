@@ -11,8 +11,8 @@ public class Jogo {
         while (p1.getPontoVida() > 0 && p2.getPontoVida() > 0 ){
             informacoes(p1, p2);
             tabuleiro1.imprimeTabuleiro();
-            System.out.println(" ");
-                rodadaPlayer(atual, oponente, tabuleiro1);
+
+            rodadaPlayer(atual, oponente, tabuleiro1);
              if(atual == p1) {
                  atual = p2;
                  oponente = p1;
@@ -36,13 +36,14 @@ public class Jogo {
         while (p1.getPontoVida() > 0 && p2.getPontoVida() > 0 ){
             informacoes(p1, p2);
             tabuleiro1.imprimeTabuleiro();
-            System.out.println(" ");
+
             if(contador % 2 != 0) {
                 rodadaPlayer(atual, oponente, tabuleiro1);
             }
             else{
                 rodadaBot(atual, oponente, tabuleiro1);
             }
+
             if(atual == p1) {
                 atual = p2;
                 oponente = p1;
@@ -51,6 +52,7 @@ public class Jogo {
                 atual = p1;
                 oponente = p2;
             }
+
             contador = contador + 1;
         }
         if(p1.getPontoVida()<=0)
@@ -102,12 +104,12 @@ public class Jogo {
         }while (teste);
     }
 
-    private boolean numDef = false;     //Só pra evitar o BOT ficar defendendo duas vezes seguidas
+    private boolean numDef = false;//Só pra evitar o BOT ficar defendendo duas vezes seguidas
     private void rodadaBot(Personagem p1, Personagem p2, Tabuleiro tabuleiro1){
         Acao acao = new Acao();
 
-        //Mago usa a ult se tiver com vida baixa (< 50) e se a vida dele for menor que a do oponente
-        if(p1.getContador() && p1.getTipoPersonagem() == 3 && p1.getPontoVida() < 50 && p1.getPontoVida() < p2.getPontoVida()){
+        //Mago usa a ult se tiver com vida baixa (< 40) e se a vida dele for menor que a do oponente
+        if(p1.getContador() && p1.getTipoPersonagem() == 3 && p1.getPontoVida() < 40 && p1.getPontoVida() < p2.getPontoVida()){
             System.out.println("BOT usou a ultimate!");
             acao.ultimate(p1,p2);
             numDef = true;
@@ -121,7 +123,7 @@ public class Jogo {
             return;
         }
 
-        //Se a defesa do BOT for zero e o BOT ter menos vida q o Player e ele ñ tiver defendido na ultima rodada ele usa o defender
+        //Se a defesa do BOT for zero e o BOT ter menos vida q o Player e ele não tiver defendido na ultima rodada ele usa o defender
         if(p1.getPontoVida() <= p2.getPontoVida() && p1.getForcaDefesa() == 0 && numDef){
             System.out.println("O BOT defendeu!");
             acao.defender(p1);

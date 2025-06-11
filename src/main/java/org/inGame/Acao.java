@@ -8,9 +8,10 @@ public class Acao {
 
     protected void atacar(Personagem atacante, Personagem defensor){
         if(verificaDistancia(atacante, defensor)) {//Se o defensor estiver no alcance do atacante
-            defensor.setPontoVidaDano(dano(atacante, defensor));
-            System.out.println("O " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " sofreu " + Math.max(dano(atacante, defensor) - defensor.getForcaDefesa(),dano(atacante,defensor))  + " de dano");
-            defensor.setForcaDefesa(atacante.getForcaAtaque());//att a defesa do defensor
+            defensor.setPontoVidaDano(calculaDano(atacante, defensor));
+            System.out.println("O " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " sofreu " + Math.max(calculaDano(atacante, defensor) - defensor.getForcaDefesa(),calculaDano(atacante,defensor))  + " de dano");
+
+            defensor.setForcaDefesaDano(atacante.getForcaAtaque());//att a defesa do defensor
             System.out.println("A defesa atual do " + defensor.getNome() + " / " + defensor.getIndicaPlayer() + " = " + defensor.getForcaDefesa());
             System.out.println();
         }
@@ -97,7 +98,7 @@ public class Acao {
         return Math.max(Math.abs(atacante.getPos()[0] - defensor.getPos()[0]), Math.abs(atacante.getPos()[1] - defensor.getPos()[1]));
     }
 
-    private int dano(Personagem atacante, Personagem defensor){
+    private int calculaDano(Personagem atacante, Personagem defensor){
         return Math.max(0, atacante.getForcaAtaque() - defensor.getForcaDefesa());
     }
 }

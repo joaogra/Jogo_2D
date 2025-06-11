@@ -4,9 +4,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Tabuleiro {
-    private String [][] tabuleiro = new String[10][10];
+    private String [][] tabuleiro;
 
     protected Tabuleiro(Personagem p1, Personagem p2){
+        tabuleiro = new String[10][10];
+
         for(int linha = 0; linha < 10; linha++){
             for(int coluna = 0; coluna < 10; coluna++){
                 tabuleiro[linha][coluna] = "*";//"o"
@@ -57,8 +59,10 @@ public class Tabuleiro {
             switch (direcao) {
                 case "C":
                     if (p.getPos()[0] != 0 && tabuleiro[p.getPos()[0] - 1][p.getPos()[1]].equals("*") ) {//Verifica se esta na linha 0
+
                         tabuleiro[p.getPos()[0]][p.getPos()[1]] = "*";
                         tabuleiro[p.getPos()[0] - 1][p.getPos()[1]] = p.getIndicaPlayer();//anda para cima
+
                         p.setPos(p.getPos()[0] - 1, p.getPos()[1]);//att a posicao do personagem
                         return;
                     }

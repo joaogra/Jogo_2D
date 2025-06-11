@@ -9,8 +9,7 @@ public class Main {
         Jogo jogo = new Jogo();
         Personagem jog1 = null, jog2 = null;
         do {
-
-            switch (menu.modoDeJogo()) { // Define o modo de jogo
+            switch(menu.modoDeJogo()) { // Define o modo de jogo
                 case 1: // Player vs Player
                     jog1 = menu.seletordePersonagem("P1");
                     jog2 = menu.seletordePersonagem("P2");

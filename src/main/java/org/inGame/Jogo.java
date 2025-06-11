@@ -25,7 +25,7 @@ public class Jogo {
         if(p1.getPontoVida()<=0)
             System.out.println("FIM DE JOGO! " + p2.getIndicaPlayer() + ": " + p2.getNome() +" é o grande VENCEDOR!");
         if (p2.getPontoVida()<=0)
-            System.out.println("FIM DE JOGO! " + p2.getIndicaPlayer() + ": " + p1.getNome() + " é o grande VENCEDOR!");
+            System.out.println("FIM DE JOGO! " + p1.getIndicaPlayer() + ": " + p1.getNome() + " é o grande VENCEDOR!");
     }
 
     public void jogoBot(Personagem p1, Personagem p2) {
@@ -58,7 +58,7 @@ public class Jogo {
         if(p1.getPontoVida()<=0)
             System.out.println("FIM DE JOGO! " + p2.getIndicaPlayer() + ": " + p2.getNome() +" é o grande VENCEDOR!");
         if (p2.getPontoVida()<=0)
-            System.out.println("FIM DE JOGO! " + p2.getIndicaPlayer() + ": " + p1.getNome() + " é o grande VENCEDOR!");
+            System.out.println("FIM DE JOGO! " + p1.getIndicaPlayer() + ": " + p1.getNome() + " é o grande VENCEDOR!");
     }
 
     private void informacoes(Personagem p1, Personagem p2){ // Exibe os atributos atuais dos players

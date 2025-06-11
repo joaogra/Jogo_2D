@@ -32,6 +32,7 @@ public class Tabuleiro {
         p2.setPos(linha, coluna);
         tabuleiro[linha][coluna] = "P2";
         System.out.println("O Jogador 2 está na linha " + (linha+1) + " e na coluna " + (coluna+1));
+        System.out.println();
     }
 
     protected void imprimeTabuleiro(){

@@ -108,7 +108,7 @@ public class Jogo {
     private void rodadaBot(Personagem p1, Personagem p2, Tabuleiro tabuleiro1){
         Acao acao = new Acao();
 
-        //Mago usa a ult se tiver com vida baixa (< 40) e se a vida dele for menor que a do oponente
+        //Mago usa o ataque especial (se disponível) se tiver com vida baixa (< 40) e se a vida dele for menor que a do oponente
         if(p1.getContador() && p1.getTipoPersonagem() == 3 && p1.getPontoVida() < 40 && p1.getPontoVida() < p2.getPontoVida()){
             System.out.println("BOT usou a ultimate!");
             acao.ultimate(p1,p2);
@@ -116,10 +116,11 @@ public class Jogo {
             return;
         }
 
-        //Guerreiro ou arqueiro usa a ult no começo já que quase sempre vai valer a pena
+        //Guerreiro ou arqueiro usa o ataque especial no começo já que quase sempre vai valer a pena
         if(p1.getContador() && (p1.getTipoPersonagem() == 1 || p1.getTipoPersonagem() == 2)) {
             System.out.println("BOT usou a ultimate!");
             acao.ultimate(p1, p2);
+            numDef = true;
             return;
         }
 
@@ -164,13 +165,18 @@ public class Jogo {
 
             if(Math.abs(p1.getPos()[1] - p2.getPos()[1]) > p1.getAlcance()) {
                 //Verifica se é a coluna que está fora de alcance
-                if (p1.getPos()[1] > p2.getPos()[1]) {//Coluna do bot maior que a do player entao anda pra esquerda
+
+                if (p1.getPos()[1] > p2.getPos()[1]) {
+                //Coluna do bot maior que a do player entao anda pra esquerda
+
                     tabuleiro1.setPos(p1,"E");
                     System.out.println("P2 se moveu para esquerda");
                     return;
                 }
 
-                if (p1.getPos()[1] < p2.getPos()[1]) {//Linha do bot menor que a do player entao anda pra direita
+                if (p1.getPos()[1] < p2.getPos()[1]) {
+                //Linha do bot menor que a do player entao anda pra direita
+
                     tabuleiro1.setPos(p1,"D");
                     System.out.println("P2 se moveu para direita");
                 }
@@ -180,7 +186,6 @@ public class Jogo {
 
     }
     private int calculaDistancia(Personagem atacante, Personagem defensor){
-        System.out.println(Math.max(Math.abs(atacante.getPos()[0] - defensor.getPos()[0]), Math.abs(atacante.getPos()[1] - defensor.getPos()[1])));
         return Math.max(Math.abs(atacante.getPos()[0] - defensor.getPos()[0]), Math.abs(atacante.getPos()[1] - defensor.getPos()[1]));
     }
 }

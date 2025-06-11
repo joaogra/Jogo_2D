@@ -3,7 +3,7 @@ package org.inGame;
 public class Acao {
     protected void movimentacao(Tabuleiro tabuleiroAtual, Personagem personagemAtual) {
         String escolha = tabuleiroAtual.insereMovimento(personagemAtual);
-        tabuleiroAtual.setPos(personagemAtual, escolha);
+        tabuleiroAtual.setPos(personagemAtual,escolha);
     }
 
     protected void atacar(Personagem atacante, Personagem defensor){

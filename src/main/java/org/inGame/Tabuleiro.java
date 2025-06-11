@@ -9,7 +9,7 @@ public class Tabuleiro {
     protected Tabuleiro(Personagem p1, Personagem p2){
         for(int linha = 0; linha < 10; linha++){
             for(int coluna = 0; coluna < 10; coluna++){
-                tabuleiro[linha][coluna] = "•";//"o"
+                tabuleiro[linha][coluna] = "*";//"o"
             }
         }
         startPosition(p1,p2);
@@ -52,12 +52,12 @@ public class Tabuleiro {
         System.out.println();
     }
 
-    protected void setPos(Personagem p,String direcao){
+    protected void setPos(Personagem p, String direcao){
         do {
             switch (direcao) {
                 case "C":
-                    if (p.getPos()[0] != 0 && tabuleiro[p.getPos()[0] - 1][p.getPos()[1]].equals("•") ) {//Verifica se esta na linha 0
-                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "•";
+                    if (p.getPos()[0] != 0 && tabuleiro[p.getPos()[0] - 1][p.getPos()[1]].equals("*") ) {//Verifica se esta na linha 0
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "*";
                         tabuleiro[p.getPos()[0] - 1][p.getPos()[1]] = p.getIndicaPlayer();//anda para cima
                         p.setPos(p.getPos()[0] - 1, p.getPos()[1]);//att a posicao do personagem
                         return;
@@ -67,8 +67,8 @@ public class Tabuleiro {
                     break;//repete o loop
 
                 case "B":
-                    if (p.getPos()[0] != 9 && tabuleiro[p.getPos()[0] + 1][p.getPos()[1]].equals("•")) {//Verifica se esta na 9
-                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "•";
+                    if (p.getPos()[0] != 9 && tabuleiro[p.getPos()[0] + 1][p.getPos()[1]].equals("*")) {//Verifica se esta na 9
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "*";
                         tabuleiro[p.getPos()[0] + 1][p.getPos()[1]] = p.getIndicaPlayer();//anda para baixo
                         p.setPos(p.getPos()[0] + 1, p.getPos()[1]);
                         return;
@@ -78,8 +78,8 @@ public class Tabuleiro {
                     break;
 
                 case "D":
-                    if (p.getPos()[1] != 9 && tabuleiro[p.getPos()[0]][p.getPos()[1] + 1].equals("•")) {//Verifica se esta na coluna 9
-                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "•";
+                    if (p.getPos()[1] != 9 && tabuleiro[p.getPos()[0]][p.getPos()[1] + 1].equals("*")) {//Verifica se esta na coluna 9
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "*";
                         tabuleiro[p.getPos()[0]][p.getPos()[1] + 1] = p.getIndicaPlayer();//anda para a direita
                         p.setPos(p.getPos()[0], p.getPos()[1] + 1);
                         return;
@@ -89,8 +89,8 @@ public class Tabuleiro {
                     break;
 
                 case "E":
-                    if (p.getPos()[1] != 0 && tabuleiro[p.getPos()[0]][p.getPos()[1] - 1].equals("•")) {//Verifica se esta na coluna 0
-                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "•";
+                    if (p.getPos()[1] != 0 && tabuleiro[p.getPos()[0]][p.getPos()[1] - 1].equals("*")) {//Verifica se esta na coluna 0
+                        tabuleiro[p.getPos()[0]][p.getPos()[1]] = "*";
                         tabuleiro[p.getPos()[0]][p.getPos()[1] - 1] = p.getIndicaPlayer();//Anda para a esquerda
                         p.setPos(p.getPos()[0], p.getPos()[1] - 1);
                         return;
